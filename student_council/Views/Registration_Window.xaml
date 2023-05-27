@@ -1,0 +1,57 @@
+﻿<Window x:Class="student_council.Views.Registration_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:student_council.Views"
+        mc:Ignorable="d"
+        Title="Регистрация" Height="800" Width="600" MinHeight="800" MinWidth="600" MaxHeight="800" MaxWidth="600" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="101*"/>
+            <RowDefinition Height="291*"/>
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0" Source="../Resources/header.png" Margin="0,-2,0,2"></Image>
+        <StackPanel Grid.Row="1" Width="370" Height="520" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110 20 0 0">
+            <TextBlock Text="Регистрация" Style="{StaticResource textblock_header}"></TextBlock>
+            <TextBlock Text="Имя:" Style="{StaticResource textblock_all}"></TextBlock>
+            <TextBox x:Name="name_reg" Style="{StaticResource textbox}" PreviewTextInput="name_reg_PreviewTextInput"/>
+
+            <TextBlock Text="Фамилия:" Style="{StaticResource textblock_all}"></TextBlock>
+            <TextBox x:Name="surname_reg" Style="{StaticResource textbox}" PreviewTextInput="name_reg_PreviewTextInput"/>
+
+            <TextBlock Text="Отчество:" Style="{StaticResource textblock_all}"></TextBlock>
+            <TextBox x:Name="patronmic_reg" Style="{StaticResource textbox}" PreviewTextInput="name_reg_PreviewTextInput"/>
+
+            <TextBlock Text="Факультет:" Style="{StaticResource textblock_all}"></TextBlock>
+            <ComboBox x:Name="faculty_reg" Style="{StaticResource cbox_faculty}" DisplayMemberPath="name_faculty"></ComboBox>
+
+            <TextBlock Text="Группа:" Style="{StaticResource textblock_all}"></TextBlock>
+            <TextBox x:Name="numgroup_reg" Style="{StaticResource textbox}" PreviewTextInput="numgroup_reg_PreviewTextInput"/>
+
+            <TextBlock Text="Email:" Style="{StaticResource textblock_all}"></TextBlock>
+            <TextBox x:Name="email_reg" Style="{StaticResource textbox}" PreviewTextInput="email_reg_PreviewTextInput"/>
+
+            <TextBlock Text="Логин:" Style="{StaticResource textblock_all}" HorizontalAlignment="Left" Margin="20 10 0 0"></TextBlock>
+            <TextBox x:Name="login_reg" Style="{StaticResource textbox}" PreviewTextInput="email_reg_PreviewTextInput"/>
+
+            <TextBlock Text="Пароль:" Style="{StaticResource textblock_all}" HorizontalAlignment="Left" Margin="20 10 0 0"></TextBlock>
+            <TextBox x:Name="password_reg" Style="{StaticResource textbox}" PreviewTextInput="email_reg_PreviewTextInput"/>
+
+            <Button Width="200" Height="35" Content="Зарегистрироваться" x:Name="btn_signup" IsDefault="True" Click="btn_signup_Click" Margin="-130 15 0 0" Style="{StaticResource button}">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Width="100" Height="35" Content="Назад" x:Name="btn_back" Click="btn_back_Click" IsCancel="True" Margin="200 -35 0 0" Style="{StaticResource button}">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

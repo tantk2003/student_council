@@ -1,0 +1,518 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="student_council_kitModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="direction_participant">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_direction" Type="Int32" Nullable="false" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="directions" Relationship="Self.FK_direction_participant_directions" FromRole="direction_participant" ToRole="directions" />
+    <NavigationProperty Name="users" Relationship="Self.FK_direction_participant_users" FromRole="direction_participant" ToRole="users" />
+  </EntityType>
+  <EntityType Name="directions">
+    <Key>
+      <PropertyRef Name="id_direction" />
+    </Key>
+    <Property Name="id_direction" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="direction_participant" Relationship="Self.FK_direction_participant_directions" FromRole="directions" ToRole="direction_participant" />
+    <NavigationProperty Name="events" Relationship="Self.FK_events_directions" FromRole="directions" ToRole="events" />
+  </EntityType>
+  <EntityType Name="distiny">
+    <Key>
+      <PropertyRef Name="id_distiny" />
+    </Key>
+    <Property Name="id_distiny" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_distiny" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="events" Relationship="Self.FK_events_distiny" FromRole="distiny" ToRole="events" />
+  </EntityType>
+  <EntityType Name="enter_history">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="login" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="enter_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="id_status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="status_enter" Relationship="Self.FK_enter_history_status_enter" FromRole="enter_history" ToRole="status_enter" />
+  </EntityType>
+  <EntityType Name="events">
+    <Key>
+      <PropertyRef Name="id_event" />
+    </Key>
+    <Property Name="id_event" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_direction" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="id_destiny" Type="Int32" Nullable="false" />
+    <Property Name="num_place" Type="Int32" Nullable="false" />
+    <Property Name="id_status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="directions" Relationship="Self.FK_events_directions" FromRole="events" ToRole="directions" />
+    <NavigationProperty Name="distiny" Relationship="Self.FK_events_distiny" FromRole="events" ToRole="distiny" />
+    <NavigationProperty Name="events_participant" Relationship="Self.FK_events_participant_events" FromRole="events" ToRole="events_participant" />
+    <NavigationProperty Name="status_event" Relationship="Self.FK_events_status_event1" FromRole="events" ToRole="status_event" />
+  </EntityType>
+  <EntityType Name="events_participant">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="id_event" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="events" Relationship="Self.FK_events_participant_events" FromRole="events_participant" ToRole="events" />
+    <NavigationProperty Name="users" Relationship="Self.FK_events_participant_users" FromRole="events_participant" ToRole="users" />
+  </EntityType>
+  <EntityType Name="faculties">
+    <Key>
+      <PropertyRef Name="id_faculty" />
+    </Key>
+    <Property Name="id_faculty" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_faculty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="users" Relationship="Self.FK_users_faculties" FromRole="faculties" ToRole="users" />
+  </EntityType>
+  <EntityType Name="posts">
+    <Key>
+      <PropertyRef Name="id_post" />
+    </Key>
+    <Property Name="id_post" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_post" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="student_council" Relationship="Self.FK_student_council_posts" FromRole="posts" ToRole="student_council" />
+  </EntityType>
+  <EntityType Name="rehearsals">
+    <Key>
+      <PropertyRef Name="id_rehearsal" />
+    </Key>
+    <Property Name="id_rehearsal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="id_creater" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="rehearsals_participant" Relationship="Self.FK_rehearsals_participant_rehearsals" FromRole="rehearsals" ToRole="rehearsals_participant" />
+    <NavigationProperty Name="users" Relationship="Self.FK_rehearsals_users" FromRole="rehearsals" ToRole="users" />
+  </EntityType>
+  <EntityType Name="rehearsals_participant">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="id_rehearsal" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="rehearsals" Relationship="Self.FK_rehearsals_participant_rehearsals" FromRole="rehearsals_participant" ToRole="rehearsals" />
+    <NavigationProperty Name="users" Relationship="Self.FK_rehearsals_participant_users" FromRole="rehearsals_participant" ToRole="users" />
+  </EntityType>
+  <EntityType Name="status_enter">
+    <Key>
+      <PropertyRef Name="id_status" />
+    </Key>
+    <Property Name="id_status" Type="Int32" Nullable="false" />
+    <Property Name="name_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="enter_history" Relationship="Self.FK_enter_history_status_enter" FromRole="status_enter" ToRole="enter_history" />
+  </EntityType>
+  <EntityType Name="status_event">
+    <Key>
+      <PropertyRef Name="id_status" />
+    </Key>
+    <Property Name="id_status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="events" Relationship="Self.FK_events_status_event1" FromRole="status_event" ToRole="events" />
+  </EntityType>
+  <EntityType Name="student_council">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="id_post" Type="Int32" />
+    <NavigationProperty Name="posts" Relationship="Self.FK_student_council_posts" FromRole="student_council" ToRole="posts" />
+    <NavigationProperty Name="users" Relationship="Self.FK_student_council_users" FromRole="student_council" ToRole="users" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="surname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="patronymic" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_faculty" Type="Int32" Nullable="false" />
+    <Property Name="num_group" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="direction_participant" Relationship="Self.FK_direction_participant_users" FromRole="users" ToRole="direction_participant" />
+    <NavigationProperty Name="events_participant" Relationship="Self.FK_events_participant_users" FromRole="users" ToRole="events_participant" />
+    <NavigationProperty Name="faculties" Relationship="Self.FK_users_faculties" FromRole="users" ToRole="faculties" />
+    <NavigationProperty Name="rehearsals" Relationship="Self.FK_rehearsals_users" FromRole="users" ToRole="rehearsals" />
+    <NavigationProperty Name="rehearsals_participant" Relationship="Self.FK_rehearsals_participant_users" FromRole="users" ToRole="rehearsals_participant" />
+    <NavigationProperty Name="student_council" Relationship="Self.FK_student_council_users" FromRole="users" ToRole="student_council" />
+  </EntityType>
+  <EntityType Name="creater_rehearsal_View">
+    <Key>
+      <PropertyRef Name="id_rehearsal" />
+      <PropertyRef Name="date" />
+      <PropertyRef Name="id_creater" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="surname" />
+      <PropertyRef Name="patronymic" />
+      <PropertyRef Name="name_post" />
+      <PropertyRef Name="id_user" />
+      <PropertyRef Name="name_user" />
+      <PropertyRef Name="surname_user" />
+      <PropertyRef Name="patronymic_user" />
+    </Key>
+    <Property Name="id_rehearsal" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="id_creater" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="surname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="patronymic" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name_post" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="name_user" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="surname_user" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="patronymic_user" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="direction_stud_View">
+    <Key>
+      <PropertyRef Name="id_direction" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="surname" />
+      <PropertyRef Name="patronymic" />
+      <PropertyRef Name="num_group" />
+      <PropertyRef Name="name_direction" />
+    </Key>
+    <Property Name="id_direction" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="surname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="patronymic" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="num_group" Type="Int32" Nullable="false" />
+    <Property Name="name_direction" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="enter_stud_View">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="login" />
+      <PropertyRef Name="enter_date" />
+      <PropertyRef Name="name_status" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="enter_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="name_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="event_change_View">
+    <Key>
+      <PropertyRef Name="id_event" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="name_event" />
+      <PropertyRef Name="description" />
+      <PropertyRef Name="date" />
+      <PropertyRef Name="id_destiny" />
+      <PropertyRef Name="num_place" />
+      <PropertyRef Name="name_status" />
+    </Key>
+    <Property Name="id_event" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name_event" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="id_destiny" Type="Int32" Nullable="false" />
+    <Property Name="num_place" Type="Int32" Nullable="false" />
+    <Property Name="name_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="events_stud_View">
+    <Key>
+      <PropertyRef Name="id_user" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="surname" />
+      <PropertyRef Name="patronymic" />
+      <PropertyRef Name="num_group" />
+      <PropertyRef Name="id_event" />
+      <PropertyRef Name="Expr1" />
+      <PropertyRef Name="date" />
+      <PropertyRef Name="name_status" />
+    </Key>
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="surname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="patronymic" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="num_group" Type="Int32" Nullable="false" />
+    <Property Name="id_event" Type="Int32" Nullable="false" />
+    <Property Name="Expr1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="name_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="posts_stud_View">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="surname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="patronymic" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="num_group" Type="Int32" />
+    <Property Name="id_post" Type="Int32" />
+    <Property Name="name_post" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_direction_participant_directions">
+    <End Role="directions" Type="Self.directions" Multiplicity="1" />
+    <End Role="direction_participant" Type="Self.direction_participant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="directions">
+        <PropertyRef Name="id_direction" />
+      </Principal>
+      <Dependent Role="direction_participant">
+        <PropertyRef Name="id_direction" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_direction_participant_users">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="direction_participant" Type="Self.direction_participant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="direction_participant">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_events_directions">
+    <End Role="directions" Type="Self.directions" Multiplicity="1" />
+    <End Role="events" Type="Self.events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="directions">
+        <PropertyRef Name="id_direction" />
+      </Principal>
+      <Dependent Role="events">
+        <PropertyRef Name="id_direction" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_events_distiny">
+    <End Role="distiny" Type="Self.distiny" Multiplicity="1" />
+    <End Role="events" Type="Self.events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="distiny">
+        <PropertyRef Name="id_distiny" />
+      </Principal>
+      <Dependent Role="events">
+        <PropertyRef Name="id_destiny" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_enter_history_status_enter">
+    <End Role="status_enter" Type="Self.status_enter" Multiplicity="1" />
+    <End Role="enter_history" Type="Self.enter_history" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="status_enter">
+        <PropertyRef Name="id_status" />
+      </Principal>
+      <Dependent Role="enter_history">
+        <PropertyRef Name="id_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_events_participant_events">
+    <End Role="events" Type="Self.events" Multiplicity="1" />
+    <End Role="events_participant" Type="Self.events_participant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="events">
+        <PropertyRef Name="id_event" />
+      </Principal>
+      <Dependent Role="events_participant">
+        <PropertyRef Name="id_event" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_events_status_event1">
+    <End Role="status_event" Type="Self.status_event" Multiplicity="1" />
+    <End Role="events" Type="Self.events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="status_event">
+        <PropertyRef Name="id_status" />
+      </Principal>
+      <Dependent Role="events">
+        <PropertyRef Name="id_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_events_participant_users">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="events_participant" Type="Self.events_participant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="events_participant">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_users_faculties">
+    <End Role="faculties" Type="Self.faculties" Multiplicity="1" />
+    <End Role="users" Type="Self.users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="faculties">
+        <PropertyRef Name="id_faculty" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="id_faculty" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_student_council_posts">
+    <End Role="posts" Type="Self.posts" Multiplicity="0..1" />
+    <End Role="student_council" Type="Self.student_council" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="posts">
+        <PropertyRef Name="id_post" />
+      </Principal>
+      <Dependent Role="student_council">
+        <PropertyRef Name="id_post" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rehearsals_participant_rehearsals">
+    <End Role="rehearsals" Type="Self.rehearsals" Multiplicity="1" />
+    <End Role="rehearsals_participant" Type="Self.rehearsals_participant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="rehearsals">
+        <PropertyRef Name="id_rehearsal" />
+      </Principal>
+      <Dependent Role="rehearsals_participant">
+        <PropertyRef Name="id_rehearsal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rehearsals_users">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="rehearsals" Type="Self.rehearsals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="rehearsals">
+        <PropertyRef Name="id_creater" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rehearsals_participant_users">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="rehearsals_participant" Type="Self.rehearsals_participant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="rehearsals_participant">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_student_council_users">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="student_council" Type="Self.student_council" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="student_council">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="student_council_kitEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="direction_participant" EntityType="Self.direction_participant" />
+    <EntitySet Name="directions" EntityType="Self.directions" />
+    <EntitySet Name="distiny" EntityType="Self.distiny" />
+    <EntitySet Name="enter_history" EntityType="Self.enter_history" />
+    <EntitySet Name="events" EntityType="Self.events" />
+    <EntitySet Name="events_participant" EntityType="Self.events_participant" />
+    <EntitySet Name="faculties" EntityType="Self.faculties" />
+    <EntitySet Name="posts" EntityType="Self.posts" />
+    <EntitySet Name="rehearsals" EntityType="Self.rehearsals" />
+    <EntitySet Name="rehearsals_participant" EntityType="Self.rehearsals_participant" />
+    <EntitySet Name="status_enter" EntityType="Self.status_enter" />
+    <EntitySet Name="status_event" EntityType="Self.status_event" />
+    <EntitySet Name="student_council" EntityType="Self.student_council" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="users" EntityType="Self.users" />
+    <EntitySet Name="creater_rehearsal_View" EntityType="Self.creater_rehearsal_View" />
+    <EntitySet Name="direction_stud_View" EntityType="Self.direction_stud_View" />
+    <EntitySet Name="enter_stud_View" EntityType="Self.enter_stud_View" />
+    <EntitySet Name="event_change_View" EntityType="Self.event_change_View" />
+    <EntitySet Name="events_stud_View" EntityType="Self.events_stud_View" />
+    <EntitySet Name="posts_stud_View" EntityType="Self.posts_stud_View" />
+    <AssociationSet Name="FK_direction_participant_directions" Association="Self.FK_direction_participant_directions">
+      <End Role="directions" EntitySet="directions" />
+      <End Role="direction_participant" EntitySet="direction_participant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_direction_participant_users" Association="Self.FK_direction_participant_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="direction_participant" EntitySet="direction_participant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_events_directions" Association="Self.FK_events_directions">
+      <End Role="directions" EntitySet="directions" />
+      <End Role="events" EntitySet="events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_events_distiny" Association="Self.FK_events_distiny">
+      <End Role="distiny" EntitySet="distiny" />
+      <End Role="events" EntitySet="events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_enter_history_status_enter" Association="Self.FK_enter_history_status_enter">
+      <End Role="status_enter" EntitySet="status_enter" />
+      <End Role="enter_history" EntitySet="enter_history" />
+    </AssociationSet>
+    <AssociationSet Name="FK_events_participant_events" Association="Self.FK_events_participant_events">
+      <End Role="events" EntitySet="events" />
+      <End Role="events_participant" EntitySet="events_participant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_events_status_event1" Association="Self.FK_events_status_event1">
+      <End Role="status_event" EntitySet="status_event" />
+      <End Role="events" EntitySet="events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_events_participant_users" Association="Self.FK_events_participant_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="events_participant" EntitySet="events_participant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_users_faculties" Association="Self.FK_users_faculties">
+      <End Role="faculties" EntitySet="faculties" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_student_council_posts" Association="Self.FK_student_council_posts">
+      <End Role="posts" EntitySet="posts" />
+      <End Role="student_council" EntitySet="student_council" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rehearsals_participant_rehearsals" Association="Self.FK_rehearsals_participant_rehearsals">
+      <End Role="rehearsals" EntitySet="rehearsals" />
+      <End Role="rehearsals_participant" EntitySet="rehearsals_participant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rehearsals_users" Association="Self.FK_rehearsals_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="rehearsals" EntitySet="rehearsals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rehearsals_participant_users" Association="Self.FK_rehearsals_participant_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="rehearsals_participant" EntitySet="rehearsals_participant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_student_council_users" Association="Self.FK_student_council_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="student_council" EntitySet="student_council" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

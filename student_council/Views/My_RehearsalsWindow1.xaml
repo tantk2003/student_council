@@ -1,0 +1,35 @@
+﻿<Window x:Class="student_council.Views.My_RehearsalsWindow1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:student_council.Views"
+        mc:Ignorable="d"
+        Title="Мои мероприятия" Height="750" Width="1000" MinWidth="1000" MinHeight="750" MaxHeight="800" MaxWidth="600" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64*"/>
+            <RowDefinition Height="303*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="128" Width="1000" Background="#1C1594">
+            <Image Source="..\Resources\logo.png" Margin="30 0 0 0"></Image>
+        </StackPanel>
+        <Button Content="Назад" x:Name="btn_exit" Click="btn_exit_Click" IsCancel="True" Style="{StaticResource button_exit}"></Button>
+        <DataGrid x:Name="DGridMyRehearsals" Grid.Row="1" Style="{StaticResource data_grid}" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,100,0,0" Width="853">
+            <DataGrid.Resources>
+                <Style x:Key="wordWrapStyle" TargetType="{x:Type TextBlock}">
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                    <Setter Property="MaxWidth" Value="200"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата проведения" x:Name="column_date" Binding="{Binding date, StringFormat='dd.MM.yyyy HH:mm'}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Создатель репетиции" x:Name="column_creater_surname" Binding="{Binding surname}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Создатель репетиции" x:Name="column_creater_name" Binding="{Binding name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Создатель репетиции" x:Name="column_creater_patronymic" Binding="{Binding patronymic}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Должность создателя" x:Name="column_post" Binding="{Binding name_post}"></DataGridTextColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

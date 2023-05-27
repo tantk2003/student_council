@@ -1,0 +1,241 @@
+﻿<Window x:Class="student_council.Views.Personal_AccountWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:student_council.Views" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="Личный кабинет" Height="750" Width="1000" MinWidth="1000" MinHeight="750" MaxHeight="800" MaxWidth="600" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64*"/>
+            <RowDefinition Height="303*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="128" Width="1000" Background="#1C1594">
+            <Image Source="..\Resources\logo.png" Margin="30 0 0 0"></Image>
+        </StackPanel>
+        <Button Content="Выйти" x:Name="btn_exit" IsCancel="True" Click="btn_exit_Click" Style="{StaticResource button_exit}" Visibility="Visible" ></Button>
+        <Button Content="Назад" x:Name="btn_back" IsCancel="True" Click="btn_back_Click" Style="{StaticResource button_exit}" Visibility="Hidden"></Button>
+        <StackPanel x:Name="spanel_user_info" Grid.Row="1" Width="350" Height="480" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100 80 0 0 " Visibility="Visible">
+            <TextBlock Text="Личные данные" Width="245"  Style="{StaticResource textblock_header}"></TextBlock>
+            <TextBlock Text="Имя:" Style="{StaticResource textblock_all}" ></TextBlock>
+            <TextBlock x:Name="name_reg" Style="{StaticResource textblock}" Text="{Binding name}" Visibility="Visible"/>
+            <TextBox x:Name="name_reg2" Style="{StaticResource textbox}" Margin="15 -25 0 0" Text="{Binding name}" PreviewTextInput="name_reg2_PreviewTextInput" Visibility="Hidden"/>
+
+            <TextBlock Text="Фамилия:" Style="{StaticResource textblock_all}"></TextBlock>
+            <TextBlock x:Name="surname_reg" Style="{StaticResource textblock}" Text="{Binding surname}"/>
+            <TextBox x:Name="surname_reg2" Style="{StaticResource textbox}" Margin="15 -25 0 0" Text="{Binding surname}" PreviewTextInput="name_reg2_PreviewTextInput"  Visibility="Hidden"/>
+
+            <TextBlock Text="Отчество:" Style="{StaticResource textblock_all}"></TextBlock>
+            <TextBlock x:Name="patronimic_reg" Style="{StaticResource textblock}" Text="{Binding patronymic}"/>
+            <TextBox x:Name="patronimic_reg2" Style="{StaticResource textbox}" Margin="15 -25 0 0" Text="{Binding patronymic}" PreviewTextInput="name_reg2_PreviewTextInput" Visibility="Hidden"/>
+
+            <TextBlock Text="Факультет:" Style="{StaticResource textblock_all}"></TextBlock>
+            <TextBlock x:Name="tblock_faculty" Style="{StaticResource textblock}"/>
+            <ComboBox x:Name="cbox_faculty2" Margin="15 -25 0 0" Style="{StaticResource cbox_faculty}" DisplayMemberPath="name_faculty" Visibility="Hidden"/>
+
+            <TextBlock Text="Группа:" Style="{StaticResource textblock_all}"></TextBlock>
+            <TextBlock x:Name="tblock_num" Style="{StaticResource textblock}" Text="{Binding num_group}"/>
+            <TextBox x:Name="tbox_num" Style="{StaticResource textbox}" Margin="15 -25 0 0" Text="{Binding num_group}" PreviewTextInput="tbox_num_PreviewTextInput" Visibility="Hidden"/>
+
+            <TextBlock Text="Email:" Style="{StaticResource textblock_all}"></TextBlock>
+            <TextBlock x:Name="tblock_email" Style="{StaticResource textblock}" Text="{Binding email}"/>
+            <TextBox x:Name="tbox_email" Style="{StaticResource textbox}" Margin="15 -25 0 0" Text="{Binding email}" Visibility="Hidden"/>
+            <Button Width="250" Height="50" x:Name="btn_change" Click="btn_change_Click" Content="Редактировать" VerticalAlignment="Bottom" Margin="0 20 0 0"  Style="{StaticResource button}">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Width="250" Height="50" x:Name="btn_save"  Click="btn_save_Click" Content="Сохранить"  Margin="0 -50 0 0"  Style="{StaticResource button}" Visibility="Hidden">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+        <StackPanel x:Name="spanel_btns" Grid.Row="1" Width="350" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="550 100 0 0 " Visibility="Visible">
+            <Button Width="250" Height="50" Margin="50,10,40,0" x:Name="btn_all_events" Click="btn_all_events_Click" Content="Все мероприятия" Style="{StaticResource button}" Visibility="Hidden">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Width="250" Height="50" Margin="50,30,40,0" x:Name="btn_my_events" Click="btn_my_events_Click" Content="Мои мероприятия" Style="{StaticResource button}" Visibility="Hidden">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Width="250" Height="50" Margin="50,30,40,0" x:Name="btn_directions" Click="btn_directions_Click" Content="Направления" Style="{StaticResource button}" Visibility="Hidden">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Width="250" Height="50" Margin="50,30,40,0" x:Name="btn_rehearsals" Click="btn_rehearsals_Click" Content="Мои репетиции" Style="{StaticResource button}" Visibility="Hidden">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Width="250" Height="50" Margin="50,-500,40,0" x:Name="btn_create_event" Content="Создать мероприятие" Click="btn_create_event_Click" Style="{StaticResource button}" Visibility="Hidden">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Width="250" Height="50" Margin="50,-350,40,0" x:Name="btn_create_rehearsals" Click="btn_create_rehearsals_Click" Content="Создать репетицию" Style="{StaticResource button}" Visibility="Hidden">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Width="250" Height="50" Margin="50 -200 40 0" x:Name="btn_student_list" Click="btn_student_list_Click" Content="Список участников" Style="{StaticResource button}" Visibility="Hidden">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Width="250" Height="50" Margin="50 -50 40 0" x:Name="btn_direction_participants" Click="btn_direction_participants_Click" Content="Участники направлений" Style="{StaticResource button}" Visibility="Hidden">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Width="250" Height="50" Margin="50 20 40 0" x:Name="btn_events_ch" Click="btn_events_ch_Click" Content="Изменить мероприятие"  Style="{StaticResource button}" Visibility="Hidden">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Width="250" Height="50" Margin="50,-220,40,330" x:Name="btn_student_council" Click="btn_student_council_Click" Content="Студенческий совет" Style="{StaticResource button}" Visibility="Hidden">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Width="250" Height="50" Margin="50,-330,40,230" x:Name="btn_posts" Click="btn_posts_Click" Content="Должности" Style="{StaticResource button}" Visibility="Hidden">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Width="250" Height="50" Margin="50,-230,40,230" x:Name="btn_enter_histiry" Click="btn_enter_histiry_Click" Content="История входа" Style="{StaticResource button}" Visibility="Hidden">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1" x:Name="spanel_print" Width="350" Height="300" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">
+            <TextBlock Text="Печать списков" Width="245"  Style="{StaticResource textblock_header}"></TextBlock>
+            <TextBlock Text="Выберите мероприятие" Width="270" HorizontalAlignment="Left" Style="{StaticResource textblock_all}" Margin="5 30 0 5"></TextBlock>
+            <ComboBox x:Name="cbox_events" Style="{StaticResource cbox_direct}" DisplayMemberPath="name" Margin="0 10 0 0" Width="350" Height="40" ></ComboBox>
+            <Button Width="171" Content="Печать" IsDefault="True" x:Name="btn_print" Click="btn_print_Click" Style="{StaticResource button}" Height="50" Margin="0 40 0 0"></Button>
+
+        </StackPanel>
+        <StackPanel Grid.Row="1" x:Name="spanel_direction" Width="350" Height="150" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 30 0 0" Visibility="Hidden">
+            <TextBlock Text="Просмотр участников" Width="350" TextAlignment="Center"  Style="{StaticResource textblock_header}"></TextBlock>
+            <TextBlock Text="Выберите направление" Width="270" HorizontalAlignment="Center" Style="{StaticResource textblock_all}" Margin="5 30 0 5"></TextBlock>
+            <ComboBox x:Name="cbox_dir" Style="{StaticResource cbox_direct}" DisplayMemberPath="name" Margin="0 10 0 0" Width="350" Height="40" ></ComboBox>
+        </StackPanel>
+        <DataGrid x:Name="DGridDir" Grid.Row="1" Style="{StaticResource data_grid}" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,100,0,0" VerticalAlignment="Center" Width="auto" Height="300" Visibility="Hidden">
+            <DataGrid.Resources>
+                <Style x:Key="wordWrapStyle" TargetType="{x:Type TextBlock}">
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                    <Setter Property="MaxWidth" Value="200"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия" x:Name="column_surname" Binding="{Binding surname}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя" x:Name="column_name" Binding="{Binding name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Отчество" x:Name="column_patronymic" Binding="{Binding patronymic}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Номер группы" x:Name="column_num_group" Binding="{Binding num_group}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="1" x:Name="spanel_info" Width="300" Height="80" VerticalAlignment="Bottom" Visibility="Hidden">
+            <Button Width="171" Content="Вывести данные" IsDefault="True" x:Name="btn_info_dgrid" Click="btn_info_dgrid_Click"  Style="{StaticResource button}" Height="50" Margin="0 15 0 0"></Button>
+        </StackPanel>
+        <DataGrid x:Name="DGridEvent" Grid.Row="1" Style="{StaticResource data_grid}" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,30,0,0" VerticalAlignment="Center" Width="auto" Height="300" Visibility="Hidden">
+            <DataGrid.Resources>
+                <Style x:Key="wordWrapStyle" TargetType="{x:Type TextBlock}">
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                    <Setter Property="MaxWidth" Value="200"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" x:Name="column_name1" Binding="{Binding name_event}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата" x:Name="column_date" Binding="{Binding date, StringFormat='dd.MM.yyyy HH:mm'}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Статус" x:Name="column_status" Binding="{Binding name_status}"></DataGridTextColumn>
+                <DataGridTemplateColumn >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btn_change_event" Click="btn_change_event_Click"  Style="{StaticResource btn_grid}" Content="Редактировать">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5"></Setter>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btn_delete_event" Click="btn_delete_event_Click" Style="{StaticResource btn_grid}" Content="Удалить">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5"></Setter>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel x:Name="spanel_change_event" Grid.Row="1" Orientation="Vertical" Margin="250,49,240,10" Visibility="Hidden">
+            <TextBlock Height="35" Text="Выберите направление:" Style="{StaticResource textblock_event}"></TextBlock>
+            <ComboBox x:Name="cbox_direction" Width="500" Style="{StaticResource cbox_direct}" DisplayMemberPath="name" ></ComboBox>
+            
+            <TextBlock Height="35" Text="Наименование мероприятия:" Style="{StaticResource textblock_event}"></TextBlock>
+            <TextBox Height="40" x:Name="tbox_name" Style="{StaticResource textbox_event}" PreviewTextInput="tbox_name_PreviewTextInput"></TextBox>
+            
+            <TextBlock Text="Описание:" Style="{StaticResource textblock_event}"></TextBlock>
+            <TextBox Height="90" x:Name="tbox_description" TextWrapping="Wrap" PreviewTextInput ="tbox_description_PreviewTextInput"  Style="{StaticResource textbox_event}"/>
+            
+            <TextBlock Text="Дата проведения:" Style="{StaticResource textblock_event}"></TextBlock>
+            <xctk:DateTimePicker x:Name="dpicker_date" Width="500" ></xctk:DateTimePicker>
+            
+            <TextBlock Text="Для кого:" Style="{StaticResource textblock_event}"></TextBlock>
+            <ComboBox x:Name="cbox_destiny" Width="500" Style="{StaticResource cbox_direct}" DisplayMemberPath="name_distiny"></ComboBox>
+            
+            <TextBlock Text="Количество мест:" Style="{StaticResource textblock_event}"></TextBlock>
+            <TextBox Height="30" x:Name="tbox_num_place" Style="{StaticResource textbox_event}" PreviewTextInput="tbox_num_place_PreviewTextInput"  Width="500"></TextBox>
+            
+            <Button Width="171" Content="Добавить" x:Name="btn_change_event_form" Click="btn_change_event_form_Click" IsDefault="True" Style="{StaticResource button}" Height="41" Margin="0 15 0 0">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

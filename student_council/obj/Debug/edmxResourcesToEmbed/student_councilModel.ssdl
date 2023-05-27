@@ -1,0 +1,566 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище student_council_kitModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="direction_participant">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_direction" Type="int" Nullable="false" />
+    <Property Name="id_user" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="directions">
+    <Key>
+      <PropertyRef Name="id_direction" />
+    </Key>
+    <Property Name="id_direction" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="distiny">
+    <Key>
+      <PropertyRef Name="id_distiny" />
+    </Key>
+    <Property Name="id_distiny" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name_distiny" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="enter_history">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="login" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="enter_date" Type="smalldatetime" Nullable="false" />
+    <Property Name="id_status" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="events">
+    <Key>
+      <PropertyRef Name="id_event" />
+    </Key>
+    <Property Name="id_event" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_direction" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="date" Type="smalldatetime" Nullable="false" />
+    <Property Name="id_destiny" Type="int" Nullable="false" />
+    <Property Name="num_place" Type="int" Nullable="false" />
+    <Property Name="id_status" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="events_participant">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_user" Type="int" Nullable="false" />
+    <Property Name="id_event" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="faculties">
+    <Key>
+      <PropertyRef Name="id_faculty" />
+    </Key>
+    <Property Name="id_faculty" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name_faculty" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="posts">
+    <Key>
+      <PropertyRef Name="id_post" />
+    </Key>
+    <Property Name="id_post" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name_post" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="rehearsals">
+    <Key>
+      <PropertyRef Name="id_rehearsal" />
+    </Key>
+    <Property Name="id_rehearsal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="date" Type="smalldatetime" Nullable="false" />
+    <Property Name="id_creater" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="rehearsals_participant">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_user" Type="int" Nullable="false" />
+    <Property Name="id_rehearsal" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="status_enter">
+    <Key>
+      <PropertyRef Name="id_status" />
+    </Key>
+    <Property Name="id_status" Type="int" Nullable="false" />
+    <Property Name="name_status" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="status_event">
+    <Key>
+      <PropertyRef Name="id_status" />
+    </Key>
+    <Property Name="id_status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name_status" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="student_council">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_user" Type="int" Nullable="false" />
+    <Property Name="id_post" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="surname" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="patronymic" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="id_faculty" Type="int" Nullable="false" />
+    <Property Name="num_group" Type="int" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="login" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="role" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "student_council_kit.dbo.creater_rehearsal_View" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="creater_rehearsal_View">
+    <Key>
+      <PropertyRef Name="id_rehearsal" />
+      <PropertyRef Name="date" />
+      <PropertyRef Name="id_creater" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="surname" />
+      <PropertyRef Name="patronymic" />
+      <PropertyRef Name="name_post" />
+      <PropertyRef Name="id_user" />
+      <PropertyRef Name="name_user" />
+      <PropertyRef Name="surname_user" />
+      <PropertyRef Name="patronymic_user" />
+    </Key>
+    <Property Name="id_rehearsal" Type="int" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="id_creater" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="surname" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="patronymic" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="name_post" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="id_user" Type="int" Nullable="false" />
+    <Property Name="name_user" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="surname_user" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="patronymic_user" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "student_council_kit.dbo.direction_stud_View" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="direction_stud_View">
+    <Key>
+      <PropertyRef Name="id_direction" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="surname" />
+      <PropertyRef Name="patronymic" />
+      <PropertyRef Name="num_group" />
+      <PropertyRef Name="name_direction" />
+    </Key>
+    <Property Name="id_direction" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="surname" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="patronymic" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="num_group" Type="int" Nullable="false" />
+    <Property Name="name_direction" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "student_council_kit.dbo.enter_stud_View" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="enter_stud_View">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="login" />
+      <PropertyRef Name="enter_date" />
+      <PropertyRef Name="name_status" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="login" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="enter_date" Type="smalldatetime" Nullable="false" />
+    <Property Name="name_status" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "student_council_kit.dbo.event_change_View" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="event_change_View">
+    <Key>
+      <PropertyRef Name="id_event" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="name_event" />
+      <PropertyRef Name="description" />
+      <PropertyRef Name="date" />
+      <PropertyRef Name="id_destiny" />
+      <PropertyRef Name="num_place" />
+      <PropertyRef Name="name_status" />
+    </Key>
+    <Property Name="id_event" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="name_event" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="date" Type="smalldatetime" Nullable="false" />
+    <Property Name="id_destiny" Type="int" Nullable="false" />
+    <Property Name="num_place" Type="int" Nullable="false" />
+    <Property Name="name_status" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "student_council_kit.dbo.events_stud_View" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="events_stud_View">
+    <Key>
+      <PropertyRef Name="id_user" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="surname" />
+      <PropertyRef Name="patronymic" />
+      <PropertyRef Name="num_group" />
+      <PropertyRef Name="id_event" />
+      <PropertyRef Name="Expr1" />
+      <PropertyRef Name="date" />
+      <PropertyRef Name="name_status" />
+    </Key>
+    <Property Name="id_user" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="surname" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="patronymic" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="num_group" Type="int" Nullable="false" />
+    <Property Name="id_event" Type="int" Nullable="false" />
+    <Property Name="Expr1" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="date" Type="smalldatetime" Nullable="false" />
+    <Property Name="name_status" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "student_council_kit.dbo.posts_stud_View" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="posts_stud_View">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id_user" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+    <Property Name="surname" Type="nvarchar" MaxLength="200" />
+    <Property Name="patronymic" Type="nvarchar" MaxLength="200" />
+    <Property Name="num_group" Type="int" />
+    <Property Name="id_post" Type="int" />
+    <Property Name="name_post" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_direction_participant_directions">
+    <End Role="directions" Type="Self.directions" Multiplicity="1" />
+    <End Role="direction_participant" Type="Self.direction_participant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="directions">
+        <PropertyRef Name="id_direction" />
+      </Principal>
+      <Dependent Role="direction_participant">
+        <PropertyRef Name="id_direction" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_direction_participant_users">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="direction_participant" Type="Self.direction_participant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="direction_participant">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_enter_history_status_enter">
+    <End Role="status_enter" Type="Self.status_enter" Multiplicity="1" />
+    <End Role="enter_history" Type="Self.enter_history" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="status_enter">
+        <PropertyRef Name="id_status" />
+      </Principal>
+      <Dependent Role="enter_history">
+        <PropertyRef Name="id_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_events_directions">
+    <End Role="directions" Type="Self.directions" Multiplicity="1" />
+    <End Role="events" Type="Self.events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="directions">
+        <PropertyRef Name="id_direction" />
+      </Principal>
+      <Dependent Role="events">
+        <PropertyRef Name="id_direction" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_events_distiny">
+    <End Role="distiny" Type="Self.distiny" Multiplicity="1" />
+    <End Role="events" Type="Self.events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="distiny">
+        <PropertyRef Name="id_distiny" />
+      </Principal>
+      <Dependent Role="events">
+        <PropertyRef Name="id_destiny" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_events_participant_events">
+    <End Role="events" Type="Self.events" Multiplicity="1" />
+    <End Role="events_participant" Type="Self.events_participant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="events">
+        <PropertyRef Name="id_event" />
+      </Principal>
+      <Dependent Role="events_participant">
+        <PropertyRef Name="id_event" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_events_participant_users">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="events_participant" Type="Self.events_participant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="events_participant">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_events_status_event1">
+    <End Role="status_event" Type="Self.status_event" Multiplicity="1" />
+    <End Role="events" Type="Self.events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="status_event">
+        <PropertyRef Name="id_status" />
+      </Principal>
+      <Dependent Role="events">
+        <PropertyRef Name="id_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rehearsals_participant_rehearsals">
+    <End Role="rehearsals" Type="Self.rehearsals" Multiplicity="1" />
+    <End Role="rehearsals_participant" Type="Self.rehearsals_participant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="rehearsals">
+        <PropertyRef Name="id_rehearsal" />
+      </Principal>
+      <Dependent Role="rehearsals_participant">
+        <PropertyRef Name="id_rehearsal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rehearsals_participant_users">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="rehearsals_participant" Type="Self.rehearsals_participant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="rehearsals_participant">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rehearsals_users">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="rehearsals" Type="Self.rehearsals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="rehearsals">
+        <PropertyRef Name="id_creater" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_student_council_posts">
+    <End Role="posts" Type="Self.posts" Multiplicity="0..1" />
+    <End Role="student_council" Type="Self.student_council" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="posts">
+        <PropertyRef Name="id_post" />
+      </Principal>
+      <Dependent Role="student_council">
+        <PropertyRef Name="id_post" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_student_council_users">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="student_council" Type="Self.student_council" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="student_council">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_users_faculties">
+    <End Role="faculties" Type="Self.faculties" Multiplicity="1" />
+    <End Role="users" Type="Self.users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="faculties">
+        <PropertyRef Name="id_faculty" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="id_faculty" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище student_council_kitModelContainer">
+    <EntitySet Name="direction_participant" EntityType="Self.direction_participant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="directions" EntityType="Self.directions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="distiny" EntityType="Self.distiny" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="enter_history" EntityType="Self.enter_history" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="events" EntityType="Self.events" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="events_participant" EntityType="Self.events_participant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="faculties" EntityType="Self.faculties" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="posts" EntityType="Self.posts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rehearsals" EntityType="Self.rehearsals" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rehearsals_participant" EntityType="Self.rehearsals_participant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="status_enter" EntityType="Self.status_enter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="status_event" EntityType="Self.status_event" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="student_council" EntityType="Self.student_council" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="creater_rehearsal_View" EntityType="Self.creater_rehearsal_View" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [creater_rehearsal_View].[id_rehearsal] AS [id_rehearsal], 
+    [creater_rehearsal_View].[date] AS [date], 
+    [creater_rehearsal_View].[id_creater] AS [id_creater], 
+    [creater_rehearsal_View].[name] AS [name], 
+    [creater_rehearsal_View].[surname] AS [surname], 
+    [creater_rehearsal_View].[patronymic] AS [patronymic], 
+    [creater_rehearsal_View].[name_post] AS [name_post], 
+    [creater_rehearsal_View].[id_user] AS [id_user], 
+    [creater_rehearsal_View].[name_user] AS [name_user], 
+    [creater_rehearsal_View].[surname_user] AS [surname_user], 
+    [creater_rehearsal_View].[patronymic_user] AS [patronymic_user]
+    FROM [dbo].[creater_rehearsal_View] AS [creater_rehearsal_View]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="direction_stud_View" EntityType="Self.direction_stud_View" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [direction_stud_View].[id_direction] AS [id_direction], 
+    [direction_stud_View].[name] AS [name], 
+    [direction_stud_View].[surname] AS [surname], 
+    [direction_stud_View].[patronymic] AS [patronymic], 
+    [direction_stud_View].[num_group] AS [num_group], 
+    [direction_stud_View].[name_direction] AS [name_direction]
+    FROM [dbo].[direction_stud_View] AS [direction_stud_View]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="enter_stud_View" EntityType="Self.enter_stud_View" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [enter_stud_View].[id] AS [id], 
+    [enter_stud_View].[login] AS [login], 
+    [enter_stud_View].[enter_date] AS [enter_date], 
+    [enter_stud_View].[name_status] AS [name_status]
+    FROM [dbo].[enter_stud_View] AS [enter_stud_View]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="event_change_View" EntityType="Self.event_change_View" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [event_change_View].[id_event] AS [id_event], 
+    [event_change_View].[name] AS [name], 
+    [event_change_View].[name_event] AS [name_event], 
+    [event_change_View].[description] AS [description], 
+    [event_change_View].[date] AS [date], 
+    [event_change_View].[id_destiny] AS [id_destiny], 
+    [event_change_View].[num_place] AS [num_place], 
+    [event_change_View].[name_status] AS [name_status]
+    FROM [dbo].[event_change_View] AS [event_change_View]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="events_stud_View" EntityType="Self.events_stud_View" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [events_stud_View].[id_user] AS [id_user], 
+    [events_stud_View].[name] AS [name], 
+    [events_stud_View].[surname] AS [surname], 
+    [events_stud_View].[patronymic] AS [patronymic], 
+    [events_stud_View].[num_group] AS [num_group], 
+    [events_stud_View].[id_event] AS [id_event], 
+    [events_stud_View].[Expr1] AS [Expr1], 
+    [events_stud_View].[date] AS [date], 
+    [events_stud_View].[name_status] AS [name_status]
+    FROM [dbo].[events_stud_View] AS [events_stud_View]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="posts_stud_View" EntityType="Self.posts_stud_View" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [posts_stud_View].[id] AS [id], 
+    [posts_stud_View].[id_user] AS [id_user], 
+    [posts_stud_View].[name] AS [name], 
+    [posts_stud_View].[surname] AS [surname], 
+    [posts_stud_View].[patronymic] AS [patronymic], 
+    [posts_stud_View].[num_group] AS [num_group], 
+    [posts_stud_View].[id_post] AS [id_post], 
+    [posts_stud_View].[name_post] AS [name_post]
+    FROM [dbo].[posts_stud_View] AS [posts_stud_View]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_direction_participant_directions" Association="Self.FK_direction_participant_directions">
+      <End Role="directions" EntitySet="directions" />
+      <End Role="direction_participant" EntitySet="direction_participant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_direction_participant_users" Association="Self.FK_direction_participant_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="direction_participant" EntitySet="direction_participant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_enter_history_status_enter" Association="Self.FK_enter_history_status_enter">
+      <End Role="status_enter" EntitySet="status_enter" />
+      <End Role="enter_history" EntitySet="enter_history" />
+    </AssociationSet>
+    <AssociationSet Name="FK_events_directions" Association="Self.FK_events_directions">
+      <End Role="directions" EntitySet="directions" />
+      <End Role="events" EntitySet="events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_events_distiny" Association="Self.FK_events_distiny">
+      <End Role="distiny" EntitySet="distiny" />
+      <End Role="events" EntitySet="events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_events_participant_events" Association="Self.FK_events_participant_events">
+      <End Role="events" EntitySet="events" />
+      <End Role="events_participant" EntitySet="events_participant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_events_participant_users" Association="Self.FK_events_participant_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="events_participant" EntitySet="events_participant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_events_status_event1" Association="Self.FK_events_status_event1">
+      <End Role="status_event" EntitySet="status_event" />
+      <End Role="events" EntitySet="events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rehearsals_participant_rehearsals" Association="Self.FK_rehearsals_participant_rehearsals">
+      <End Role="rehearsals" EntitySet="rehearsals" />
+      <End Role="rehearsals_participant" EntitySet="rehearsals_participant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rehearsals_participant_users" Association="Self.FK_rehearsals_participant_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="rehearsals_participant" EntitySet="rehearsals_participant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rehearsals_users" Association="Self.FK_rehearsals_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="rehearsals" EntitySet="rehearsals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_student_council_posts" Association="Self.FK_student_council_posts">
+      <End Role="posts" EntitySet="posts" />
+      <End Role="student_council" EntitySet="student_council" />
+    </AssociationSet>
+    <AssociationSet Name="FK_student_council_users" Association="Self.FK_student_council_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="student_council" EntitySet="student_council" />
+    </AssociationSet>
+    <AssociationSet Name="FK_users_faculties" Association="Self.FK_users_faculties">
+      <End Role="faculties" EntitySet="faculties" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
